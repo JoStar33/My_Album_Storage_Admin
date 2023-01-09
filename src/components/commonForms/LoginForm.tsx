@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { login } from '../../apis/adminApi';
 import styled from 'styled-components'
 import { Stack, TextField, CardContent, Card, Button } from '@mui/material';
@@ -9,6 +9,9 @@ const LoginForm: React.FC = () => {
     email: "",
     password: ""
   });
+  useEffect(() => {
+    console.log(import.meta.env);
+  })
   const { data, refetch } = useQuery("admin",() => login(account.email, account.password), {
     refetchOnWindowFocus: false,
     enabled: false,
