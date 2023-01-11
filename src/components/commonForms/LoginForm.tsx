@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { login } from '../../apis/adminApi';
 import styled from 'styled-components'
 import { Stack, TextField, CardContent, Card, Button } from '@mui/material';
-import { useQuery } from "react-query";
+import { useMutation } from "react-query";
 
 const LoginForm: React.FC = () => {
   const [account, setAccount] = useState({
@@ -12,19 +12,9 @@ const LoginForm: React.FC = () => {
   useEffect(() => {
     console.log(import.meta.env);
   })
-  const { data, refetch } = useQuery("admin",() => login(account.email, account.password), {
-    refetchOnWindowFocus: false,
-    enabled: false,
-    retry: 0,
-    onSuccess: data => {
-      console.log(data);
-    },
-    onError: (e: any) => {
-      console.log(e.message);
-    },
-  });
+  const { mutate, isLoading, isError, error, isSuccess } = useMutation(() => login(account.email, account.password));
   const handleLogin = () => {
-    refetch();
+    mutate()
   };
   const onChangeAccount = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAccount({...account, [e.target.name]: e.target.value});
