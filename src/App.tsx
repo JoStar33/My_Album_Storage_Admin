@@ -1,11 +1,16 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
+import React from 'react';
 import LoginPage from './pages/LoginPage';
-function App() {
+import MainPage from './pages/MainPage';
+import { Route, Routes } from 'react-router-dom';
+
+const App: React.FC = () => {
 
   return (
     <div className="App">
-      <LoginPage></LoginPage>
+      <Routes>
+        <Route path="/*" element={<MainPage/>}></Route>
+        <Route path="login" element={<LoginPage/>} />
+      </Routes>
     </div>
   )
 }
