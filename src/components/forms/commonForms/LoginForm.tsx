@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components'
 import ErrorDialog from '../../dialogs/commonDialogs/ErrorDialog';
 import { validateEmail, validatePassword } from '../../../utils/validate';
@@ -29,6 +29,7 @@ const LoginForm: React.FC = () => {
       navigate('/');
     },
     onError: (error, variables, context) => {
+      console.log(error);
       setDialog(true);
     },
     onSettled: (data, error, variables, context) => {
