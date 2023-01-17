@@ -4,6 +4,8 @@ import ErrorDialog from '../../dialogs/commonDialogs/ErrorDialog';
 import { validateEmail, validatePassword } from '../../../utils/validate';
 import { useNavigate } from "react-router-dom";
 import { Stack, TextField, CardContent, Card, Button } from '@mui/material';
+import { adminState } from '../../../states/atom';
+import { useSetRecoilState } from 'recoil';
 import { useMutation } from "react-query";
 import { login } from '../../../apis/adminApi';
 
@@ -23,13 +25,15 @@ const LoginForm: React.FC = () => {
     email: "",
     password: ""
   });
+  const setRecoilCounter = useSetRecoilState(adminState);
   const navigate = useNavigate();
   const { mutate, isLoading, isError, error, isSuccess } = useMutation(() => login(account.email, account.password), {
     onSuccess: (data, variables, context) => {
+      console.log(data.data);
+      setRecoilCounter(data.data);
       navigate('/');
     },
     onError: (error, variables, context) => {
-      console.log(error);
       setDialog(true);
     },
     onSettled: (data, error, variables, context) => {
