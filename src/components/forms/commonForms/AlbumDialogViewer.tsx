@@ -23,12 +23,13 @@ const AlbumViewer = styled.div`
   background-color: #E1D5FA;
   border-radius: 20px;
   margin-top: 8px;
+  margin-bottom: 40px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
   width: 90%;
-  height: 60vh;
+  height: 45vh;
   ::-webkit-scrollbar {
     display: none;
   }

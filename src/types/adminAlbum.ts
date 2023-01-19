@@ -2,6 +2,7 @@ export type adminAlbumType = {
   id: string,
   artist: string,
   image: string,
+  name: string;
   header: string,
   description: string,
   owner: string,

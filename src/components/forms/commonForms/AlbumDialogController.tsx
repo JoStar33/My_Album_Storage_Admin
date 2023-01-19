@@ -20,12 +20,13 @@ const AlbumDialogController: React.FC<propsType> = ({setSearchAlbums}) => {
     searchedData.forEach((element) => {
       searchAlbums.push({
         id: element.id,
+        name: element.name,
         artist: element.artists[0].name,
         image: element.images[0].url,
         description: "",
         header: '',
         owner: '',
-        isSelected: false
+        isSelected: false,
       });
     });
     setSearchAlbums(searchAlbums);

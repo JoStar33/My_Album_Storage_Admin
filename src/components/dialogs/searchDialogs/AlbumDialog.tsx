@@ -3,6 +3,7 @@ import Dialog from '@mui/material/Dialog';
 import { adminAlbumType } from '../../../types/adminAlbum';
 import AlbumDialogController from '../../forms/commonForms/AlbumDialogController';
 import AlbumDialogViewer from '../../forms/commonForms/AlbumDialogViewer';
+import SelectedAlbumViewer from '../../forms/commonForms/SelectedAlbumViewer';
 import styled from 'styled-components';
 
 type propsType = {
@@ -24,6 +25,7 @@ const AlbumDialog: React.FC<propsType> = ({dialog, setDialog}) => {
       onClose={handleClose}
     >
       <Centering>
+        <SelectedAlbumViewer searchAlbums={searchAlbums} setSearchAlbums={setSearchAlbums}></SelectedAlbumViewer>
         <AlbumDialogController setSearchAlbums={setSearchAlbums}></AlbumDialogController>
         <AlbumDialogViewer searchAlbums={searchAlbums} setSearchAlbums={setSearchAlbums}></AlbumDialogViewer>
       </Centering>
@@ -36,21 +38,6 @@ const Centering = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`;
-
-const AlbumViewer = styled.div`
-  background-color: #E1D5FA;
-  border-radius: 20px;
-  margin-top: 8px;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-  width: 90%;
-  height: 60vh;
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 export default AlbumDialog;
