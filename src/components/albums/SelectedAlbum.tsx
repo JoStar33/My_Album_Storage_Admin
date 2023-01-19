@@ -17,8 +17,11 @@ const SelectedAlbum: React.FC<propsType> = ({album, setSearchAlbums}) => {
 
 const SelectedAlbumContainer = styled.div`
   background-color: white;
-  width: 70%;
+  width: 80%;
   height: 20vh;
+  border-radius: 20px;
+  margin-top: 2vh;
+  margin-left: 5%;
 `;
 
 const SelectedAlbumImage = styled.img`

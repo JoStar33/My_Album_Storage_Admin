@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { adminAlbumType } from '../../types/adminAlbum';
+import SelectedForm from '../forms/commonForms/SelectedForm';
 
 type propsType = {
-  album: adminAlbumType
+  album: adminAlbumType,
+  searchAlbums: adminAlbumType[],
+  setSearchAlbums: React.Dispatch<React.SetStateAction<adminAlbumType[]>>
 }
 
-const AlbumBox: React.FC<propsType> = ({album}) => {
+const AlbumBox: React.FC<propsType> = ({album, searchAlbums, setSearchAlbums}) => {
   const albumText = useRef<any>(null);
   const [isLineOver, setIsLineOver] = useState(false);
   useEffect(() => {
@@ -15,8 +18,19 @@ const AlbumBox: React.FC<propsType> = ({album}) => {
       setIsLineOver(true);
     }
   }, [album.id]);
+  const handleAlbumSelect = () => {
+    const selectedAlbums = searchAlbums.map(searchAlbum => {
+      if(album.id === searchAlbum.id)
+        searchAlbum.isSelected = !album.isSelected
+      return searchAlbum;
+    })
+    setSearchAlbums(selectedAlbums);
+  }
   return (
-    <AlbumBoxContainer>
+    <AlbumBoxContainer onClick={handleAlbumSelect}>
+      {
+        album.isSelected && <SelectedForm></SelectedForm>
+      }
       <AlbumImage src={album.image}></AlbumImage>
       <AlbumTitle ref={albumText} isLineOver={isLineOver}>{album.name}</AlbumTitle>
     </AlbumBoxContainer>
@@ -28,6 +42,7 @@ width: 20%;
 margin-left: 2.5%;
 margin-right: 2.5%;
 background-color: white;
+position: relative;
 display: flex;
 justify-content: center;
 align-items: center;

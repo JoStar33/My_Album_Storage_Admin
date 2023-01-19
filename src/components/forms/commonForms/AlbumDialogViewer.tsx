@@ -13,7 +13,11 @@ const AlbumDialogViewer: React.FC<propsType> = ({searchAlbums, setSearchAlbums})
     <AlbumViewer>
       {
         searchAlbums.map(album => 
-          <AlbumBox album={album}></AlbumBox>)
+          <AlbumBox 
+            album={album} 
+            searchAlbums={searchAlbums} 
+            setSearchAlbums={setSearchAlbums}
+          ></AlbumBox>)
       }
     </AlbumViewer>
   );
