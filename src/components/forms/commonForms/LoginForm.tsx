@@ -25,12 +25,12 @@ const LoginForm: React.FC = () => {
     email: "",
     password: ""
   });
-  const setRecoilCounter = useSetRecoilState(adminState);
+  const setRecoilAdmin = useSetRecoilState(adminState);
   const navigate = useNavigate();
   const { mutate, isLoading, isError, error, isSuccess } = useMutation(() => login(account.email, account.password), {
     onSuccess: (data, variables, context) => {
       console.log(data.data);
-      setRecoilCounter(data.data);
+      setRecoilAdmin(data.data);
       navigate('/');
     },
     onError: (error, variables, context) => {

@@ -2,13 +2,16 @@ import React from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
 import styled from 'styled-components';
 import TodaysAlbumForm from '../components/forms/adminForms/TodaysAlbumForm';
+import MainPageControllerForm from '../components/forms/adminForms/MainPageControllerForm';
 import { adminState } from '../states/atom';
 import { useRecoilState } from 'recoil';
+import { setTokenByPost } from '../apis/tokenApi';
 import { getToken } from "../apis/tokens/token";
-import MainPageControllerForm from '../components/forms/adminForms/MainPageControllerForm';
+import { useQuery } from 'react-query';
 
 const MainPage: React.FC = () => {
   let isAuthorized = getToken();
+  const query = useQuery('token', setTokenByPost)
   return (
     isAuthorized ?
     <AlbumPageContainer>
