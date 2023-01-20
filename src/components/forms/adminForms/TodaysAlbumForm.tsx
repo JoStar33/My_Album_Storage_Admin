@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AdminAlbumBox from '../../albums/AdminAlbumBox';
-import { useRecoilValue } from 'recoil';
-import { adminAlbumState } from '../../../states/atom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { adminAlbumState, adminState } from '../../../states/atom';
 import AlbumDialog from '../../dialogs/searchDialogs/AlbumDialog';
+import { useQuery } from 'react-query';
+import { getAlbum } from '../../../apis/albumApi';
 
 const TodaysAlbumForm: React.FC = () => {
   const [dialog, setDialog] = useState(false);
   const adminAlbum = useRecoilValue(adminAlbumState);
+  const adminInfo = useRecoilValue(adminState);
+  const setRecoilAlbum = useSetRecoilState(adminAlbumState);
+  useQuery('adminAlbum', () => getAlbum(adminInfo.id),{
+    onSuccess: (data) => {
+      setRecoilAlbum(data.data);
+    }
+  });
   return (
     <TodaysAlbumContainer>
       <AlbumDialog dialog={dialog} setDialog={setDialog}></AlbumDialog>

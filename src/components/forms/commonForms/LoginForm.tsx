@@ -29,15 +29,11 @@ const LoginForm: React.FC = () => {
   const navigate = useNavigate();
   const { mutate, isLoading, isError, error, isSuccess } = useMutation(() => login(account.email, account.password), {
     onSuccess: (data, variables, context) => {
-      console.log(data.data);
       setRecoilAdmin(data.data);
       navigate('/');
     },
     onError: (error, variables, context) => {
       setDialog(true);
-    },
-    onSettled: (data, error, variables, context) => {
-      // I will fire first
     },
   });
   const handleLogin = (account: {

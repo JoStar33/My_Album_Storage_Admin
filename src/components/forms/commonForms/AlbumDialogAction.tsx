@@ -9,11 +9,12 @@ import { useMutation } from 'react-query';
 import { postAlbum } from '../../../apis/albumApi';
 
 type propsType = {
+  setDialog: React.Dispatch<React.SetStateAction<boolean>>,
   selectedAlbums: adminAlbumType[],
   setSelectedAlbums: React.Dispatch<React.SetStateAction<adminAlbumType[]>>
 }
 
-const AlbumDialogAction: React.FC<propsType> = ({selectedAlbums, setSelectedAlbums}) => {
+const AlbumDialogAction: React.FC<propsType> = ({selectedAlbums, setSelectedAlbums, setDialog}) => {
   const adminInfo = useRecoilValue(adminState);
   const { mutate, isLoading, isError, error, isSuccess } = useMutation(() => postAlbum(adminInfo.id, selectedAlbums), {
     onSuccess: (data, variables, context) => {
@@ -25,14 +26,29 @@ const AlbumDialogAction: React.FC<propsType> = ({selectedAlbums, setSelectedAlbu
   });
   const applyAlbums = () => {
     mutate();
+    closeDialog();
+  }
+  const closeDialog = () => {
+    setDialog(false);
+    setSelectedAlbums([]);
   }
   return (
     <AlbumDialogActionContainer>
       <Stack direction="row" spacing={4}>
-        <Button onClick={applyAlbums} size="large" variant="contained" color="success">
+        <Button 
+          onClick={applyAlbums} 
+          size="large" 
+          variant="contained" 
+          color="success"
+        >
           저장
         </Button>
-        <Button size="large" variant="outlined" color="error">
+        <Button 
+          onClick={closeDialog} 
+          size="large" 
+          variant="outlined" 
+          color="error"
+        >
           닫기
         </Button>
       </Stack>

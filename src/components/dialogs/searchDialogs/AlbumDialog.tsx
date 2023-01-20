@@ -35,7 +35,11 @@ const AlbumDialog: React.FC<propsType> = ({dialog, setDialog}) => {
           selectedAlbums={selectedAlbums} 
           setSelectedAlbums={setSelectedAlbums}
         ></AlbumDialogViewer>
-        <AlbumDialogAction selectedAlbums={selectedAlbums} setSelectedAlbums={setSelectedAlbums}></AlbumDialogAction>
+        <AlbumDialogAction 
+          setDialog={setDialog}
+          selectedAlbums={selectedAlbums} 
+          setSelectedAlbums={setSelectedAlbums}
+        ></AlbumDialogAction>
       </Centering>
     </Dialog>
   );

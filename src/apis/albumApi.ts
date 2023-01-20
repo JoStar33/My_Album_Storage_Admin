@@ -14,10 +14,14 @@ const getSpotifyAlbum = (query: string, type:string) => {
   });
 };
 
+const getAlbum = (userId: string) => {
+  return customAxios.get(`/adminAlbum/${userId}`);
+};
+
 const postAlbum = (userId: string, selectedAlbum: adminAlbumType[]) => {
   return customAxios.post(`/adminAlbum/${userId}`, {
     selectedAlbum
   })
 };
 
-export { getSpotifyAlbum, postAlbum }; 
+export { getSpotifyAlbum, getAlbum, postAlbum }; 

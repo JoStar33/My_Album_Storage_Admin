@@ -10,7 +10,7 @@ import { getToken } from "../apis/tokens/token";
 import { useQuery } from 'react-query';
 
 const MainPage: React.FC = () => {
-  let isAuthorized = getToken();
+  const isAuthorized = getToken();
   const query = useQuery('token', setTokenByPost)
   return (
     isAuthorized ?
