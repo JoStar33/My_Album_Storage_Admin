@@ -16,10 +16,10 @@ const AdminAlbumBox: React.FC<propsType> = ({album}) => {
 
 const AdminAlbumContainer = styled.div`
 background-color: #E0D8FF;
-margin-left: 5vw;
-margin-right: 5vw;
-margin-top: 5vh;
-margin-bottom: 5vh;
+margin-left: 2.5vw;
+margin-right: 2.5vw;
+margin-top: 2.5vh;
+margin-bottom: 2.5vh;
 border-radius: 20px;
 width: 40vw;
 height: 15vh;
@@ -28,6 +28,7 @@ align-items: center;
 `;
 
 const AlbumImage = styled.img`
+margin-left: 2vh;
 width: 11vh;
 height: 11vh;
 `;

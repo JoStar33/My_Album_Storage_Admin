@@ -11,7 +11,7 @@ import { useQuery } from 'react-query';
 
 const MainPage: React.FC = () => {
   const isAuthorized = getToken();
-  const query = useQuery('token', setTokenByPost)
+  useQuery('token', setTokenByPost)
   return (
     isAuthorized ?
     <AlbumPageContainer>

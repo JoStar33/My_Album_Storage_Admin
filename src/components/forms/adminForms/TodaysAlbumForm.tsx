@@ -48,6 +48,7 @@ height: 50px;
 `;
 
 const AlbumContainer = styled.div`
+width: 90vw;
 display: flex;
 flex-wrap: wrap;
 overflow-y: scroll;
