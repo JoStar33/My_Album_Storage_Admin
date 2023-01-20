@@ -24,4 +24,8 @@ const postAlbum = (userId: string, selectedAlbum: adminAlbumType[]) => {
   })
 };
 
-export { getSpotifyAlbum, getAlbum, postAlbum }; 
+const deleteAlbum = (albumId: string) => {
+  return customAxios.delete(`/adminAlbum/${albumId}`);
+};
+
+export { getSpotifyAlbum, getAlbum, postAlbum, deleteAlbum }; 

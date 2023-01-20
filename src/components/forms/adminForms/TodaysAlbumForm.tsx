@@ -6,15 +6,30 @@ import { adminAlbumState, adminState } from '../../../states/atom';
 import AlbumDialog from '../../dialogs/searchDialogs/AlbumDialog';
 import { useQuery } from 'react-query';
 import { getAlbum } from '../../../apis/albumApi';
+import { adminAlbumType } from '../../../types/adminAlbum';
 
 const TodaysAlbumForm: React.FC = () => {
   const [dialog, setDialog] = useState(false);
   const adminAlbum = useRecoilValue(adminAlbumState);
   const adminInfo = useRecoilValue(adminState);
   const setRecoilAlbum = useSetRecoilState(adminAlbumState);
+  const makeAlbumObject = (data: any) => {
+    return data.map((element: any) => {
+      return {
+        id: element._id,
+        artist: element.artist,
+        image: element.image,
+        name: element.name,
+        header: element.header,
+        description: element.description,
+        owner: element.owner,
+        isSelected: false
+      }
+    }) as adminAlbumType[];
+  };
   useQuery('adminAlbum', () => getAlbum(adminInfo.id),{
     onSuccess: (data) => {
-      setRecoilAlbum(data.data);
+      setRecoilAlbum(makeAlbumObject(data.data));
     }
   });
   return (

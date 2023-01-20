@@ -3,6 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import styled from 'styled-components';
 import TodaysAlbumForm from '../components/forms/adminForms/TodaysAlbumForm';
 import MainPageControllerForm from '../components/forms/adminForms/MainPageControllerForm';
+import MainPageViewer from '../components/forms/adminForms/MainPageViewer';
 import { adminState } from '../states/atom';
 import { useRecoilState } from 'recoil';
 import { setTokenByPost } from '../apis/tokenApi';
@@ -15,6 +16,7 @@ const MainPage: React.FC = () => {
   return (
     isAuthorized ?
     <AlbumPageContainer>
+      <MainPageViewer></MainPageViewer>
       <MainPageControllerForm></MainPageControllerForm>
       <Viewer>
         <Routes>
