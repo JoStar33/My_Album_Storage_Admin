@@ -4,6 +4,7 @@ import { adminAlbumType } from '../../../types/adminAlbum';
 import AlbumDialogController from '../../forms/commonForms/AlbumDialogController';
 import AlbumDialogViewer from '../../forms/commonForms/AlbumDialogViewer';
 import SelectedAlbumViewer from '../../forms/commonForms/SelectedAlbumViewer';
+import AlbumDialogAction from '../../forms/commonForms/AlbumDialogAction';
 import styled from 'styled-components';
 
 type propsType = {
@@ -12,6 +13,7 @@ type propsType = {
 };
 
 const AlbumDialog: React.FC<propsType> = ({dialog, setDialog}) => {
+  const [selectedAlbums, setSelectedAlbums] = useState([] as adminAlbumType[]);
   const [searchAlbums, setSearchAlbums] = useState([] as adminAlbumType[]);
   const handleClose = () => {
     setDialog(false);
@@ -25,9 +27,15 @@ const AlbumDialog: React.FC<propsType> = ({dialog, setDialog}) => {
       onClose={handleClose}
     >
       <Centering>
-        <SelectedAlbumViewer searchAlbums={searchAlbums} setSearchAlbums={setSearchAlbums}></SelectedAlbumViewer>
+        <SelectedAlbumViewer selectedAlbums={selectedAlbums} setSelectedAlbums={setSelectedAlbums}></SelectedAlbumViewer>
         <AlbumDialogController setSearchAlbums={setSearchAlbums}></AlbumDialogController>
-        <AlbumDialogViewer searchAlbums={searchAlbums} setSearchAlbums={setSearchAlbums}></AlbumDialogViewer>
+        <AlbumDialogViewer 
+          searchAlbums={searchAlbums} 
+          setSearchAlbums={setSearchAlbums} 
+          selectedAlbums={selectedAlbums} 
+          setSelectedAlbums={setSelectedAlbums}
+        ></AlbumDialogViewer>
+        <AlbumDialogAction selectedAlbums={selectedAlbums} setSelectedAlbums={setSelectedAlbums}></AlbumDialogAction>
       </Centering>
     </Dialog>
   );

@@ -4,22 +4,21 @@ import { adminAlbumType } from '../../../types/adminAlbum';
 import styled from 'styled-components';
 
 type propsType = {
-  searchAlbums: adminAlbumType[],
-  setSearchAlbums: React.Dispatch<React.SetStateAction<adminAlbumType[]>>
+  selectedAlbums: adminAlbumType[],
+  setSelectedAlbums: React.Dispatch<React.SetStateAction<adminAlbumType[]>>
 }
 
-const SelectedAlbumViewer: React.FC<propsType> = ({searchAlbums, setSearchAlbums}) => {
+const SelectedAlbumViewer: React.FC<propsType> = ({selectedAlbums, setSelectedAlbums}) => {
   return (
     <SelectedAlbumContainer>
       {
-        searchAlbums.map(album => 
-          album.isSelected 
-          ? <SelectedAlbum 
-              key={album.id}
-              album={album}
-              setSearchAlbums={setSearchAlbums}
-            ></SelectedAlbum> 
-          : <></>)
+        selectedAlbums.map(album => 
+          <SelectedAlbum 
+            key={album.id}
+            album={album}
+            selectedAlbums={selectedAlbums}
+            setSelectedAlbums={setSelectedAlbums}
+          ></SelectedAlbum>)
       }
     </SelectedAlbumContainer>
   );

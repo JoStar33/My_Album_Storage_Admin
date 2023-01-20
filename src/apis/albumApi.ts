@@ -1,3 +1,4 @@
+import { adminAlbumType } from "../types/adminAlbum";
 import { customAxios } from "./axios/customAxios";
 import { spotifyAxios } from './axios/spotifyAxios';
 
@@ -13,4 +14,10 @@ const getSpotifyAlbum = (query: string, type:string) => {
   });
 };
 
-export { getSpotifyAlbum }; 
+const postAlbum = (userId: string, selectedAlbum: adminAlbumType[]) => {
+  return customAxios.post(`/adminAlbum/${userId}`, {
+    selectedAlbum
+  })
+};
+
+export { getSpotifyAlbum, postAlbum }; 

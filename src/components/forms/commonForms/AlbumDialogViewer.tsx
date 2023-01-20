@@ -5,10 +5,12 @@ import { adminAlbumType } from '../../../types/adminAlbum';
 
 type propsType = {
   searchAlbums: adminAlbumType[],
-  setSearchAlbums: React.Dispatch<React.SetStateAction<adminAlbumType[]>>
+  setSearchAlbums: React.Dispatch<React.SetStateAction<adminAlbumType[]>>,
+  selectedAlbums: adminAlbumType[],
+  setSelectedAlbums: React.Dispatch<React.SetStateAction<adminAlbumType[]>>
 }
 
-const AlbumDialogViewer: React.FC<propsType> = ({searchAlbums, setSearchAlbums}) => {
+const AlbumDialogViewer: React.FC<propsType> = ({searchAlbums, setSearchAlbums, selectedAlbums, setSelectedAlbums}) => {
   return (
     <AlbumViewer>
       {
@@ -17,6 +19,8 @@ const AlbumDialogViewer: React.FC<propsType> = ({searchAlbums, setSearchAlbums})
             album={album} 
             searchAlbums={searchAlbums} 
             setSearchAlbums={setSearchAlbums}
+            selectedAlbums={selectedAlbums}
+            setSelectedAlbums={setSelectedAlbums}
           ></AlbumBox>)
       }
     </AlbumViewer>
@@ -27,7 +31,7 @@ const AlbumViewer = styled.div`
   background-color: #E1D5FA;
   border-radius: 20px;
   margin-top: 8px;
-  margin-bottom: 40px;
+  margin-bottom: 5px;
   position: relative;
   display: flex;
   flex-wrap: wrap;
