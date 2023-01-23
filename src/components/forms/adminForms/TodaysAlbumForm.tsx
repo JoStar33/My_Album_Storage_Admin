@@ -27,7 +27,7 @@ const TodaysAlbumForm: React.FC = () => {
       }
     }) as adminAlbumType[];
   };
-  useQuery('adminAlbum', () => getAlbum(adminInfo.id),{
+  useQuery('adminAlbum', () => getAlbum(adminInfo.id), {
     onSuccess: (data) => {
       setRecoilAlbum(makeAlbumObject(data.data));
     }
@@ -41,7 +41,10 @@ const TodaysAlbumForm: React.FC = () => {
       <AlbumContainer>
         {
           adminAlbum.map(album => 
-            <AdminAlbumBox album={album}></AdminAlbumBox>)
+            <AdminAlbumBox 
+              key={album.id} 
+              album={album}
+            ></AdminAlbumBox>)
         }
       </AlbumContainer>
     </TodaysAlbumContainer>

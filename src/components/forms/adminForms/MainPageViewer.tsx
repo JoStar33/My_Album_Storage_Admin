@@ -7,7 +7,8 @@ const MainPageViewer: React.FC = () => {
   const adminInfo = useRecoilValue(adminState);
   return (
     <MainPageViewerContainer>
-      <h1>반갑습니다. 
+      <h1>
+        반갑습니다. 
         {
           adminInfo.email
         }님 
@@ -17,6 +18,7 @@ const MainPageViewer: React.FC = () => {
 };
 
 const MainPageViewerContainer = styled.div`
+padding: 20px;
 width: 90vw;
 box-shadow: 0 6px 6px 0 gray;
 height: 30vh;

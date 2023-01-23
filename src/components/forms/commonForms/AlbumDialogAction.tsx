@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { adminAlbumType } from '../../../types/adminAlbum';
-import { useRecoilValue } from 'recoil';
-import { adminState } from '../../../states/atom';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { adminAlbumState, adminState } from '../../../states/atom';
 import { useMutation } from 'react-query';
 import { postAlbum } from '../../../apis/albumApi';
 
@@ -16,18 +16,17 @@ type propsType = {
 
 const AlbumDialogAction: React.FC<propsType> = ({selectedAlbums, setSelectedAlbums, setDialog}) => {
   const adminInfo = useRecoilValue(adminState);
-  const { mutate, isLoading, isError, error, isSuccess } = useMutation(() => postAlbum(adminInfo.id, selectedAlbums), {
+  const adminAlbum = useRecoilValue(adminAlbumState);
+  const setRecoilAlbum = useSetRecoilState(adminAlbumState);
+  const { mutate } = useMutation(() => postAlbum(adminInfo.id, selectedAlbums), {
     onSuccess: (data, variables, context) => {
+      setRecoilAlbum([...adminAlbum, ...selectedAlbums]);
+      closeDialog();
     },
     onError: (error, variables, context) => {
-    },
-    onSettled: (data, error, variables, context) => {
-    },
+      console.log(error);
+    }
   });
-  const applyAlbums = () => {
-    mutate();
-    closeDialog();
-  }
   const closeDialog = () => {
     setDialog(false);
     setSelectedAlbums([]);
@@ -36,7 +35,7 @@ const AlbumDialogAction: React.FC<propsType> = ({selectedAlbums, setSelectedAlbu
     <AlbumDialogActionContainer>
       <Stack direction="row" spacing={4}>
         <Button 
-          onClick={applyAlbums} 
+          onClick={() => mutate()} 
           size="large" 
           variant="contained" 
           color="success"
