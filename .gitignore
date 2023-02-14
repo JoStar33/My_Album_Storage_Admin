@@ -1,6 +1,11 @@
 # Logs
 logs
 *.log
+<<<<<<< HEAD
+=======
+
+.env
+>>>>>>> 426a458ac2f27dd8a4354d21f01ba4a6a50946b7
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
