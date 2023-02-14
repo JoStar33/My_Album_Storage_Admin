@@ -11,17 +11,6 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-<<<<<<< HEAD
-    "@mui/material": "^5.11.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "styled-components": "^5.3.6"
-  },
-  "devDependencies": {
-    "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
-    "@vitejs/plugin-react": "^3.0.0",
-=======
     "@mui/icons-material": "^5.11.0",
     "@mui/material": "^5.11.3",
     "axios": "^1.2.2",
@@ -43,7 +32,6 @@
     "@types/styled-components": "^5.1.26",
     "@vitejs/plugin-react": "^3.0.0",
     "sass": "^1.57.1",
->>>>>>> 426a458ac2f27dd8a4354d21f01ba4a6a50946b7
     "typescript": "^4.9.3",
     "vite": "^4.0.0"
   }

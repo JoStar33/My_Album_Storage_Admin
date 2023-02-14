@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React from 'react';
-import styled from 'styled-components'
-import LoginForm from '../components/commonForms/LoginForm';
-
-const LoginPage: React.FC = () => {
-  return (
-    <LoginPageContainer>
-      <LoginForm></LoginForm>
-    </LoginPageContainer>
-=======
 import React, { useEffect } from 'react';
 import styled from 'styled-components'
 import Cookies from 'universal-cookie';
@@ -30,7 +19,6 @@ const LoginPage: React.FC = () => {
     </LoginPageContainer>
   ) : (
     <Navigate to="/" />
->>>>>>> 426a458ac2f27dd8a4354d21f01ba4a6a50946b7
   );
 };
 
